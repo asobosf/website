@@ -11,6 +11,10 @@ git checkout -b deploy
 
 bower install
 
+polybuild index.html
+mv index.build.html index.html
+rm -rf components
+
 git add -A .
 git commit -am 'update gh-pages'
 git push -u origin deploy:gh-pages --force

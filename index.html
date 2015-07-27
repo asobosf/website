@@ -7,10 +7,102 @@
 
   <title>あそぼうSF</title>
 
-</head>
-<body class="fullbleed vertical layout">
+  <script src="components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+  <link rel="import" href="components/iron-flex-layout/iron-flex-layout.html">
+  <link rel="import" href="elements/asobo-dot.html">
 
-  Asobo SF!
+  <style is="custom-style">
+    body {
+      font-family: 'Roboto', sans-serif;
+      @apply(--layout-vertical);
+      @apply(--layout-center);
+      -webkit-tap-highlight-color: transparent;
+      margin: 0;
+    }
+    h1 {
+      display: block;
+      margin: 0 auto;
+      max-width: 640px;
+      color: #606060;
+      font-weight: normal;
+    }
+    .header {
+      margin-left: 4%;
+    }
+    h2 {
+      font-weight: normal;
+      text-align: center;
+      margin-bottom: 2em;
+    }
+    a {
+      text-decoration: none;
+    }
+    .logo {
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    asobo-dot {
+      @apply(--layout-flex);
+      flex-basis: initial;
+      min-width: 300px;
+    }
+    .dot-group {
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+      @apply(--layout-wrap);
+    }
+  </style>
+
+</head>
+<body>
+
+  <h1>
+    <div class="header">プレイグループ</div>
+    <img src="img/logo.gif" class="logo" title="あそ坊">
+  </h1>
+
+  <h2><a href="mailto:asobosf@gmail.com" target="_blank">asobosf@gmail.com</a></h2>
+
+  <div class="dot-group">
+
+    <asobo-dot label="about" color="255,0,0">
+      日本語で行われている<br>
+      プレイグループ<br>
+      対象年齢０〜３歳
+    </asobo-dot>
+
+    <asobo-dot label="when/where" color="0,200,0">
+      毎週水曜日<br>
+      SFジャパンタウン某所
+  　　
+    </asobo-dot>
+
+  </div>
+
+  <div class="dot-group">
+
+    <asobo-dot label="what we do" pos="-10" color="0,0,255">
+      情報交換＆おしゃべり<br>
+      簡単な手遊び<br>
+      隔月でお誕生日会開催
+    </asobo-dot>
+
+    <asobo-dot label="あそ坊&NewLine;おすすめ" pos="10" color="128,0,128">
+      子連れOKのお料理教室<br>
+      <a href="http://www.ameblo.jp/aya-noel">www.ameblo.jp/aya-noel</a><br><br>
+      ベイビーサインを習おう<br>
+      <a href="http://babybubu.jimbo.com">babybubu.jimbo.com</a>
+    </asobo-dot>
+
+  </div>
+
+  <asobo-dot label="問い合わせ" open color="240,100,0">
+    見学受付中 (妊婦さんも可)<br>
+    <a href="mailto:asobosf@gmail.com" target="_blank">asobosf@gmail.com</a><br>
+    めぐみ＆りょうこまで
+  </asobo-dot>
 
 </body>
 </html>

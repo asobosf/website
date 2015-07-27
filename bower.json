@@ -1,4 +1,9 @@
 {
   "name": "asobosf#gh-pages",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#~1.0.8",
+    "webcomponentsjs": "webcomponents/webcomponentsjs",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout"
+  }
 }

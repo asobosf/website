@@ -1,0 +1,105 @@
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/iron-flex-layout/iron-flex-layout.html">
+
+<dom-module id="asobo-dot">
+  <style>
+    :host {
+      display: inline-block;
+      @apply(--layout-vertical);
+      @apply(--layout-center);
+      cursor: pointer;
+      margin-bottom: 30px;
+      margin-left: 15px;
+    }
+    #wrapper {
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+      position: relative;
+    }
+    #dot {
+      @apply(--layout-horizontal);
+      @apply(--layout-center-center);
+      border-radius: 100px;
+      height: 100px;
+      width: 100px;
+      transition: transform 70ms cubic-bezier(0.39, 0.58, 0.57, 1);
+      text-align: center;
+    }
+    #content {
+      padding-left: 20px;
+    }
+  </style>
+  <template>
+    <div id="wrapper">
+      <div id="dot" style$="{{calcDotStyle(color)}}" inner-text="{{label}}"></div>
+      <div id="content">
+        <content></content>
+      </div>
+    </div>
+  </template>
+  <script>
+  Polymer({
+    is: 'asobo-dot',
+    properties: {
+      animationCount: {
+        observer: 'animationCountChanged'
+      },
+      color: {
+        value: 'red'
+      },
+      pos: {
+        type: Number,
+        value: 0,
+        observer: 'resize'
+      }
+    },
+    listeners: {
+      tap: 'toggle',
+      mouseover: 'toggle',
+      mouseout: 'out',
+      transitionend: 'animationKeyframe'
+    },
+    ready: function() {
+      window.addEventListener('resize', this.resize.bind(this));
+      this.resize();
+    },
+    resize: function() {
+      var width = Math.min(window.innerWidth - 120, 200);
+      var pos = (window.innerWidth > 600) ? this.pos : 0;
+      this.$.content.style.width = width + 'px';
+      this.$.wrapper.style.left = pos + '%';
+    },
+    calcDotStyle: function(color) {
+      return [
+        'color:', 'rgb(', color, ');',
+        'background-color:', 'rgba(', color, ',0.3);',
+      ].join('');
+    },
+    toggle: function(e) {
+      if (e.type == 'tap' || !this.over) {
+        if (!this.animationCount) {
+          this.animationCount = 6;
+        }
+        this.over = true;
+      }
+    },
+    out: function() {
+      this.over = false;
+    },
+    animationCountChanged: function(count) {
+      var delta, dur;
+      if (count % 2) {
+        delta = 0;
+      } else {
+        delta = Math.pow(2, count);
+      }
+      this.translate3d(0, -delta + 'px', 0, this.$.dot);
+    },
+    animationKeyframe: function() {
+      if (this.animationCount) {
+        this.animationCount--;
+      }
+    }
+  });
+  </script>
+</dom-module>
